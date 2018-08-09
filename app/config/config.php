@@ -23,7 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+$prototype = "http" . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "s" : "") . "://";
+$server = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
+$config['base_url'] = $prototype . $server;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,9 @@ $config['base_url'] = '';
 |
 */
 $config['index_page'] = 'index.php';
+
+
+$config['themes'] = 'default/';
 
 /*
 |--------------------------------------------------------------------------
@@ -521,3 +526,8 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+$config['modules_locations'] = array(
+    APPPATH.'../modules/' => '../../modules/',
+);
